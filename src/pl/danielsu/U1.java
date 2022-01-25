@@ -2,24 +2,27 @@ package pl.danielsu;
 
 public class U1 extends Rocket{
 
-    int cargoCarried;
-    int cargoLimit;
+    int currentWeight;
+    int maxWeight;
+    int cost;
 
-    public U1(int cargoCarried, int cargoLimit) {
-        this.cargoCarried = cargoCarried;
-        this.cargoLimit = cargoLimit;
+    public U1() {
+        super(100,10000,18000);
+
     }
 
     @Override
     public boolean lunch() {
-        int randomNumber = (int) Math.floor(Math.random()*101);
-        return (5*(cargoCarried/cargoLimit)) < randomNumber;
+        double chance = 0.005*((double)super.getCurrentWeight()/super.getMaxWeight());
+        double rand = Math.random()*.01;
+        return chance<=rand;
     }
 
     @Override
     public boolean land() {
-        int randomNumber = (int) Math.floor(Math.random()*101);
-        return (cargoCarried/cargoLimit) < randomNumber;
+        double chance = 0.001*((double)super.getCurrentWeight()/super.getMaxWeight());
+        double rand = Math.random()*.01;
+        return chance<=rand;
     }
 
 }
